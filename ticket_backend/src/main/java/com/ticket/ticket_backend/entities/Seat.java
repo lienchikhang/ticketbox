@@ -1,10 +1,7 @@
 package com.ticket.ticket_backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -15,6 +12,7 @@ import java.math.BigDecimal;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @DynamicInsert
 public class Seat {

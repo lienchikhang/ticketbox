@@ -1,10 +1,7 @@
 package com.ticket.ticket_backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
@@ -12,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Organizer {
 

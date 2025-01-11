@@ -1,10 +1,7 @@
 package com.ticket.ticket_backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
@@ -15,6 +12,7 @@ import java.util.List;
 @Table(name = "ticket_001")
 @Data
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket {

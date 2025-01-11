@@ -5,16 +5,14 @@ import com.ticket.ticket_backend.entities.Role;
 import com.ticket.ticket_backend.enums.PermissionEnum;
 import com.ticket.ticket_backend.enums.RoleEnum;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Embeddable
 @Builder
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RolePerCompositeKey {
 

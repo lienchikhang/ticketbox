@@ -2,10 +2,7 @@ package com.ticket.ticket_backend.entities;
 
 import com.ticket.ticket_backend.entities.combine.RolePerCompositeKey;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
@@ -13,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @Builder
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role_Permission {
 

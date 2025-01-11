@@ -2,16 +2,14 @@ package com.ticket.ticket_backend.entities;
 
 import com.ticket.ticket_backend.entities.combine.SlotSeatCompositeKey;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "slot_seat_001")
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SlotSeat {
