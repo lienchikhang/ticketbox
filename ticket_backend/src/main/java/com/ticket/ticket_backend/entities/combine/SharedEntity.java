@@ -25,7 +25,7 @@ public class SharedEntity {
     @Column(name = "updated_at")
     LocalDateTime updatedAt;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
     @Builder.Default
     Boolean isDeleted = false;
 }

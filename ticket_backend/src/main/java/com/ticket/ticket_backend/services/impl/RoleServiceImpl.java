@@ -53,14 +53,16 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public RoleRes updateRole(RoleEnum name, RoleUpdateReq req) {
+    public RoleRes updateRole(String name, RoleUpdateReq req) {
+
+        log.info("in func update {}", name);
 
         //check existed role
-        Role existedRole = roleRepository.findById(name).orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+        Role existedRole = roleRepository.findById(RoleEnum.valueOf(name)).orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
 
         //check update
         if (Objects.nonNull(req.getRoleName())) {
-            existedRole.setRoleName(req.getRoleName());
+            existedRole.setRoleName(RoleEnum.valueOf(req.getRoleName()));
         }
 
         if (Objects.nonNull(req.getRoleDesc())) {
@@ -102,7 +104,7 @@ public class RoleServiceImpl implements RoleService {
         //check existed role
         Role existedRole = roleRepository.findById(name).orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
         existedRole.getShared().setIsDeleted(true);
-
+        roleRepository.save(existedRole);
         return null;
     }
 }

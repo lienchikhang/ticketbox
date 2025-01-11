@@ -2,10 +2,15 @@ package com.ticket.ticket_backend.controllers;
 
 import com.ticket.ticket_backend.dto.common.ApiRes;
 import com.ticket.ticket_backend.dto.common.ListRes;
+import com.ticket.ticket_backend.dto.request.create.PermissionCreateReq;
 import com.ticket.ticket_backend.dto.request.create.RoleCreateReq;
+import com.ticket.ticket_backend.dto.request.update.PermissionUpdateReq;
 import com.ticket.ticket_backend.dto.request.update.RoleUpdateReq;
+import com.ticket.ticket_backend.dto.response.PermissionRes;
 import com.ticket.ticket_backend.dto.response.RoleRes;
+import com.ticket.ticket_backend.enums.PermissionEnum;
 import com.ticket.ticket_backend.enums.RoleEnum;
+import com.ticket.ticket_backend.services.PermissionService;
 import com.ticket.ticket_backend.services.RoleService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -17,59 +22,59 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/permissions")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class RoleController {
+public class PermissionController {
 
     //services
-    RoleService roleService;
+    PermissionService permissionService;
 
     @PostMapping("/create")
-    public ApiRes<RoleRes> createRole(@RequestBody @Valid RoleCreateReq req) {
-        return ApiRes.<RoleRes>builder()
+    public ApiRes<PermissionRes> createRole(@RequestBody @Valid PermissionCreateReq req) {
+        return ApiRes.<PermissionRes>builder()
                 .statusCode(201)
-                .metadata(roleService.createRole(req))
+                .metadata(permissionService.createPermission(req))
                 .msg("Create successfully")
                 .build();
     }
 
     @DeleteMapping("/delete/{name}")
     public ApiRes<Void> deleteRole(
-            @PathVariable(name = "name") RoleEnum name
+            @PathVariable(name = "name") PermissionEnum name
     ) {
         return ApiRes.<Void>builder()
                 .statusCode(201)
-                .metadata(roleService.deleteRole(name))
+                .metadata(permissionService.deletePermission(name))
                 .msg("Delete successfully")
                 .build();
     }
 
     @PatchMapping("/update/{name}")
-    public ApiRes<RoleRes> updateRole(
+    public ApiRes<PermissionRes> updateRole(
             @PathVariable(name = "name") String name,
-            @RequestBody @Valid RoleUpdateReq req
+            @RequestBody @Valid PermissionUpdateReq req
             ) {
-        return ApiRes.<RoleRes>builder()
+        return ApiRes.<PermissionRes>builder()
                 .statusCode(200)
-                .metadata(roleService.updateRole(name, req))
+                .metadata(permissionService.updatePermission(name, req))
                 .msg("Update successfully")
                 .build();
     }
 
     @GetMapping("/get-by-name/{id}")
-    public ApiRes<RoleRes> getRoleByName(
-            @PathVariable(name = "id") RoleEnum name
+    public ApiRes<PermissionRes> getRoleByName(
+            @PathVariable(name = "id") PermissionEnum name
     ) {
-        return ApiRes.<RoleRes>builder()
+        return ApiRes.<PermissionRes>builder()
                 .msg("Get successfully")
                 .statusCode(200)
-                .metadata(roleService.getRoleByName(name))
+                .metadata(permissionService.getPermissionByName(name))
                 .build();
     }
 
     @GetMapping
-    public ApiRes<ListRes<RoleRes>> getAllRole(
+    public ApiRes<ListRes<PermissionRes>> getAllRole(
             @RequestParam(name = "page", defaultValue = "1", required = false) int page,
             @RequestParam(name = "pageSize", defaultValue = "12", required = false) int pageSize,
             @RequestParam(name = "direction", defaultValue = "asc", required = false) String direction
@@ -78,9 +83,9 @@ public class RoleController {
         Sort sort = direction.equals("asc") ? Sort.by(Sort.Direction.ASC, "createdAt") : Sort.by(Sort.Direction.DESC, "createdAt");
         Pageable pageable = PageRequest.of(page - 1, pageSize, sort);
 
-        return ApiRes.<ListRes<RoleRes>>builder()
+        return ApiRes.<ListRes<PermissionRes>>builder()
                 .statusCode(200)
-                .metadata(roleService.getAllRoles(pageable))
+                .metadata(permissionService.getAllPermissions(pageable))
                 .msg("Get successfully")
                 .build();
     }

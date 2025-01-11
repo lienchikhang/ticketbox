@@ -1,7 +1,9 @@
 package com.ticket.ticket_backend.dto.request.update;
 
 import com.ticket.ticket_backend.enums.RoleEnum;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
@@ -13,8 +15,9 @@ import org.hibernate.validator.constraints.Length;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleUpdateReq {
 
-    @Length(max = 10, message = "INVALID_ROLE")
-    RoleEnum roleName;
+    @Nullable
+    @Size(max = 10, message = "INVALID_ROLE")
+    String roleName;
 
     String roleDesc;
 }

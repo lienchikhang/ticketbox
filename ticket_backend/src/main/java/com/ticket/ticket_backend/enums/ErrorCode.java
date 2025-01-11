@@ -5,7 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
-    ROLE_NOT_FOUND(1200, 404, "Role not found");
+    ROLE_NOT_FOUND(1200, 404, "Role not found"),
+    PERMISSION_NOT_FOUND(1201, 404, "Permission not found")
+    ;
 
     int code;
     int statusCode;

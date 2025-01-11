@@ -13,7 +13,7 @@ public interface RoleService {
 
     RoleRes getRoleByName(RoleEnum name);
 
-    RoleRes updateRole(RoleEnum name, RoleUpdateReq req);
+    RoleRes updateRole(String name, RoleUpdateReq req);
 
     ListRes<RoleRes> getAllRoles(Pageable pageable);
 

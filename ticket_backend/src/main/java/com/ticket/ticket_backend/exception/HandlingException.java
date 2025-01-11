@@ -13,6 +13,7 @@ public class HandlingException {
 
     @ExceptionHandler(value = AppException.class)
     public ResponseEntity<ApiRes> handlingAppException(AppException e) {
+
         ErrorCode errorCode = e.getErrorCode();
 
         ApiRes apiResponse = ApiRes
